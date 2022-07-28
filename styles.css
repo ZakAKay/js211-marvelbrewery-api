@@ -1,0 +1,45 @@
+#list-box {
+display: grid;
+grid-template-areas: 
+"all-characters column2 column3";
+}
+img {
+    width: 150PX;
+
+}
+li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+h2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+    
+    
+}
+
+.headerbutton {
+    display: flex;
+    margin: auto;
+
+}
+body {
+    background-image: url("marvel.jpg");
+    background-size: repeat;
+    min-height: 100vh;
+    background-position: bottom;
+    background-position: fixed;
+
+
+    
+}
+
+button {
+   background-color: white;
+   color: black;
+}

@@ -26,25 +26,78 @@ const marvelHeroes = () => {
 // This function logs the results in your browser's console
 // const consolePosts = () => {
 // }
-
+ let has = [];
+let wants = [];
 // this function creates elements inside the all-characters ul, then appends text inside it with the posts that were returned in the request.
 const displayPost = () => {
   const allPosts = document.getElementById("all-characters");
   arrayOfCharacters.map((post, index) => {
     console.log("index", index, "post", post);
     const li = document.createElement("li");
+    const dontHave = document.createElement("button")
+    dontHave.innerHTML = 'Dont have'
+    dontHave.addEventListener('click', function(){moveToDontHaves(post)})
+    const have = document.createElement("button")
+    have.innerHTML = 'Have'
+    have.addEventListener('click', function(){moveToHaves(post)})
     const img = document.createElement("img");
     img.src = `${post.thumbnail.path}.${post.thumbnail.extension}`;
     //  img.src = post.thumbnail.path + "." + post.thumbnail.extension   same as the line above
     const text = document.createTextNode(`#${index}, Title: ${post.name}:`);
     li.appendChild(text);
+    li.append(img);
+    li.append(dontHave)
+    li.append(have)
     allPosts.append(li);
-    allPosts.append(img);
   });
 };
 
-displayPost();
+const moveToHaves = (character) => {
+  if (!has.includes(character)) {
+    has.push(character)
+  }
+  const haves = document.getElementById("haves");
+  haves.innerHTML = null
+  displayHaves()
+console.log(has)
+}
 
+const moveToDontHaves = (character) => {
+  if (wants.includes(character)) 
+  {} else {
+    wants.push(character)
+  }
+  const haveNots = document.getElementById("have-nots");
+  haveNots.innerHTML = null
+    displayDontHaves()
+    console.log(haveNots)
+}
+
+const displayHaves = () => {
+  const haves = document.getElementById("haves");
+  has.map((post, index) => {
+    const li = document.createElement("li");
+    const img = document.createElement("img");
+    img.src = `${post.thumbnail.path}.${post.thumbnail.extension}`;
+    const text = document.createTextNode(`#${index}, Title: ${post.name}:`);
+    li.appendChild(text);
+    li.append(img);
+    haves.append(li);
+  })
+}
+
+const displayDontHaves = () => {
+  const haveNots = document.getElementById("have-nots");
+  wants.map((post, index) => {
+    const li = document.createElement("li");
+    const img = document.createElement("img");
+    img.src = `${post.thumbnail.path}.${post.thumbnail.extension}`;
+    const text = document.createTextNode(`#${index}, Title: ${post.name}:`);
+    li.appendChild(text);
+    li.append(img);
+    haveNots.append(li);
+  })
+}
 
 // const herosIDontHave = arrayOfCharacters(3, 7, 9)
 //     herosIDontHave();
